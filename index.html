@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sophie Seller Academy</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',-apple-system,'Segoe UI',sans-serif}
+body{background:#fafafa;color:#171725}
+.app{display:flex;min-height:100vh}
+.sidebar{width:270px;background:#fff;padding:28px 22px;border-right:1px solid #eee}
+.menu-toggle{display:none;background:none;border:none;font-size:24px;color:#171725;cursor:pointer;padding:0;margin-bottom:16px}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:99}
+.logo{display:flex;gap:12px;align-items:center;margin-bottom:35px}
+.logo-icon{width:42px;height:42px;background:#111;color:white;border-radius:12px;display:grid;place-items:center;font-size:25px}nav i,a i,.help-box i,header i,.card i,.course i,.modal-box i{margin-right:8px}
+.logo h2{font-size:17px}.logo span{color:#ec2f7a}.logo p{font-size:12px;color:#777}
+nav a{display:block;padding:14px 16px;margin-bottom:8px;color:#555;border-radius:10px;cursor:pointer}
+nav a.active,nav a:hover{background:#ffe7f1;color:#ec2f7a;font-weight:700}
+.help-box{margin-top:70px;background:#fff1f7;padding:22px;border-radius:10px}
+.help-box p{color:#555;line-height:1.6;margin:14px 0}
+button{border:none;background:#ec2f7a;color:white;padding:13px 24px;border-radius:7px;font-weight:700;cursor:pointer}
+button:hover{background:#d81f68}
+.logout-btn{background:#e62f72;padding:10px 16px;font-size:13px;margin-top:20px}
+.logout-btn:hover{background:#d41f62}
+.referral-box{background:#fff1f7;padding:16px;border-radius:10px;margin:16px 0;font-size:13px}
+.referral-box strong{color:#ec2f7a}
+.main{flex:1;padding:28px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+header h1{font-size:26px}header p{color:#777;margin-top:5px}
+.profile{display:flex;align-items:center;gap:16px}.profile img{width:46px;height:46px;border-radius:50%}.profile small{display:block;color:#777}
+.hero{background:url('images.jpg') center/cover;min-height:190px;border-radius:14px;padding:32px;display:flex;justify-content:space-between;overflow:hidden;margin-bottom:24px;background-attachment:fixed}
+.hero h2{font-size:26px;margin-bottom:12px}.hero p{max-width:480px;line-height:1.6;color:#333;margin-bottom:20px}
+.hero img{width:300px;object-fit:contain;border-radius:20px;background:transparent}
+.grid{display:grid;grid-template-columns:1.3fr .95fr;gap:24px}
+.card{background:white;border-radius:12px;padding:22px;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+.progress-head{display:flex;justify-content:space-between;margin:20px 0 10px;color:#555}
+.bar,.mini{height:8px;background:#eee;border-radius:30px;overflow:hidden}
+.bar div,.mini span{display:block;height:100%;background:#ec2f7a;border-radius:30px}
+.bar div{width:25%}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:24px;border:1px solid #eee;border-radius:10px}
+.stats div{text-align:center;padding:16px;border-right:1px solid #eee}.stats div:last-child{border-right:0}
+.stats b{font-size:26px;display:block}.stats span{font-size:12px;color:#666}
+.lesson{display:flex;gap:18px;margin-top:18px}.lesson img{width:140px;height:120px;border-radius:7px;object-fit:cover}
+.lesson h4{font-size:19px;margin-bottom:10px}.lesson p{color:#666;margin-bottom:15px}
+.courses{grid-column:1/2}.card-title{display:flex;justify-content:space-between;margin-bottom:16px}.card-title span{color:#ec2f7a;cursor:pointer;font-weight:700}
+.course{display:grid;grid-template-columns:55px 1fr 80px;align-items:center;gap:14px;padding:10px;border-bottom:1px solid #eee;cursor:pointer}
+.course:hover{background:#fff4f9}.course img{width:45px;height:45px;object-fit:contain}.course b{font-size:14px}.course small{color:#ec2f7a;font-weight:700}
+.side-cards{display:grid;gap:24px}.side-cards h4{margin:15px 0}.side-cards p{color:#555;margin-bottom:8px}
+footer{text-align:center;margin:24px;color:#555}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;justify-content:center;align-items:center;z-index:100}
+.modal-box{width:420px;background:white;padding:32px;border-radius:16px;text-align:center}
+.modal-box h2{margin-bottom:15px}.modal-box p{color:#555;line-height:1.6;margin-bottom:24px}
+@media(max-width:900px){.app{flex-direction:column}.sidebar{width:100%}.grid{grid-template-columns:1fr}.hero img{display:none}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.sidebar{padding:16px 14px}.logo{margin-bottom:20px}.logo h2{font-size:14px}.logo p{font-size:10px}nav a{padding:12px 12px;font-size:14px;margin-bottom:6px}.help-box{margin-top:40px;padding:16px}.main{padding:16px}header{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:16px}header h1{font-size:20px}header p{font-size:13px}.profile{flex-direction:column;align-items:flex-start;gap:8px}.profile i{font-size:32px}.hero{padding:16px;min-height:auto;flex-direction:column;background-attachment:scroll}.hero h2{font-size:20px}.hero p{font-size:13px;max-width:100%;margin-bottom:12px}.hero img{width:100%;max-width:200px}.stats{grid-template-columns:1fr}.stats div{padding:12px}.stats b{font-size:20px}.stats span{font-size:11px}.card{padding:16px}.card h3{font-size:20px}.lesson{gap:12px;flex-direction:column}.lesson img{width:100%;height:auto}.course{grid-template-columns:40px 1fr 60px;gap:10px}.course img{width:35px;height:35px}.course b{font-size:12px}.modal-box{width:90%;max-width:400px}.footer{font-size:12px}}
+@media(max-width:480px){.menu-toggle{display:block}.sidebar{position:fixed;left:0;top:0;height:100vh;width:270px;z-index:100;transform:translateX(-100%);transition:transform 0.3s ease;overflow-y:auto}.sidebar.active{transform:translateX(0)}.sidebar-overlay{display:none}.sidebar-overlay.active{display:block}nav{display:block}nav a{padding:12px 12px;font-size:13px;margin-bottom:6px}body{overflow-y:auto}.sidebar{padding:12px 10px}.logo{margin-bottom:16px}.logo h2{font-size:12px}.logo p{font-size:9px}.help-box{margin-top:20px;padding:12px;font-size:12px}.help-box h3{font-size:14px}button{padding:10px 16px;font-size:13px;margin-top:8px}.logout-btn{padding:8px 12px;font-size:11px}.main{padding:12px}header{gap:8px;margin-bottom:12px}header h1{font-size:16px}header p{font-size:11px}.profile{gap:8px}.profile i{font-size:28px}.profile small{font-size:10px}.hero{padding:12px}.hero h2{font-size:18px}.hero p{font-size:12px;margin-bottom:10px}.hero img{max-width:150px}.grid{gap:12px}.card{padding:12px}.card h3{font-size:16px}.progress-head{font-size:12px}.stats{gap:8px}.stats div{padding:10px}.stats b{font-size:18px}.stats span{font-size:10px}.lesson{gap:10px}.lesson h4{font-size:14px}.lesson p{font-size:11px}.course{gap:8px;padding:8px}.course b{font-size:11px}.course small{font-size:10px}.card-title{margin-bottom:12px}.card-title span{font-size:12px}.side-cards{gap:12px}.side-cards h4{margin:10px 0}.side-cards p{font-size:12px;margin-bottom:6px}.modal-box{width:95%;padding:20px;border-radius:12px}.modal-box h2{font-size:16px}.modal-box p{font-size:12px;margin-bottom:16px}.referral-box{padding:12px;font-size:11px}.referral-box strong{font-size:12px}}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">
+      <div class="logo-icon"><i class="bi bi-music-note"></i></div>
+      <div>
+        <h2><span>Russel Hartley</span> Digital Seller </h2>
+        <p>TikTok Shop Training</p></div>
+    </div>
+
+    <nav>
+      <a class="active"><i class="bi bi-columns-gap"></i>Dashboard</a>
+      <a onclick="showPayment()"><i class="bi bi-book"></i>My Courses</a>
+      <a onclick="showPayment()"><i class="bi bi-book"></i>Lessons</a>
+      <a><i class="bi bi-camera-video"></i>Live Classes</a>
+      <a><i class="bi bi-clipboard"></i>Assignments</a>
+      <a><i class="bi bi-download"></i>Downloads</a>
+      <a><i class="bi bi-graph-up"></i>My Progress</a>
+      <a><i class="bi bi-award"></i>Certificates</a>
+      <a><i class="bi bi-telephone"></i>Support</a>
+      <a><i class="bi bi-gear"></i>Account Settings</a>
+    </nav>
+
+    <div class="help-box">
+      <h3><i class="bi bi-headset"></i>Need Help?</h3>
+      <p>Our support team is here to help you succeed.</p>
+      <button>Contact Support</button>
+      <div class="referral-box" id="referralInfo"></div>
+      <button class="logout-btn" onclick="logout()"><i class="bi bi-box-arrow-left"></i>Logout</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header>
+      <div>
+        <button class="menu-toggle" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
+        <h1 id="welcomeHeader"><i class="bi bi-hand-thumbs-up"></i>Welcome back!</h1>
+        <p>Let's continue your TikTok Shop training journey.</p>
+      </div>
+
+      <div class="profile">
+       
+        <i class="bi bi-person-circle" style="font-size:46px;color:#ec2f7a"></i>
+        <div><b id="userName">User</b><small>Student</small></div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h2>You’re Enrolled!</h2>
+        <p>Thank you for joining the program. Complete your payment to unlock all courses and training resources.</p>
+        <button onclick="showPayment()">View My Courses</button>
+      </div>
+      <img src="elegant-smiling-woman-glasses-striped-shirt-using-laptop-computer-while-siting-table-kitchen_171337-13030.avif">
+    </section>
+
+    <div class="grid">
+      <section class="card progress">
+        <h3>My Progress</h3>
+        <div class="progress-head"><span>Overall Progress</span><span>25%</span></div>
+        <div class="bar"><div></div></div>
+
+        <div class="stats">
+          <div><b>0</b><span>Lessons Completed</span></div>
+          <div><b>0</b><span>Live Classes Attended</span></div>
+          <div><b>0</b><span>Assignments Submitted</span></div>
+          <div><b>0</b><span>Certificates Earned</span></div>
+        </div>
+      </section>
+
+      <section class="card next">
+        <h3><i class="bi bi-layout-three-columns"></i>Next Lesson</h3>
+        <div class="lesson">
+          <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=300">
+          <div>
+            <h4>Introduction to TikTok Shop</h4>
+            <p>Lesson 1 · 15 min</p>
+            <button onclick="showPayment()">Continue Lesson</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card courses">
+        <div class="card-title">
+          <h3>My Courses</h3>
+          <span onclick="showPayment()">View All</span>
+        </div>
+
+        <div class="course" onclick="showPayment()">
+          <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
+          <div><b>Beginner TikTok Shop Training</b><div class="mini"><span style="width:25%"></span></div></div>
+          <small><i class="bi bi-lock"></i>Locked</small>
+        </div>
+
+        <div class="course" onclick="showPayment()">
+          <img src="https://cdn-icons-png.flaticon.com/512/751/751463.png">
+          <div><b>Product Research & Winning Products</b><div class="mini"></div></div>
+          <small><i class="bi bi-lock"></i>Locked</small>
+        </div>
+
+        <div class="course" onclick="showPayment()">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+          <div><b>Content & Promotion Strategy</b><div class="mini"></div></div>
+          <small><i class="bi bi-lock"></i>Locked</small>
+        </div>
+
+        <div class="course" onclick="showPayment()">
+          <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png">
+          <div><b>Affiliate & Seller Growth Class</b><div class="mini"></div></div>
+          <small><i class="bi bi-lock"></i>Locked</small>
+        </div>
+
+        <div class="course" onclick="showPayment()">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png">
+          <div><b>Store Management & Scaling</b><div class="mini"></div></div>
+          <small><i class="bi bi-lock"></i>Locked</small>
+        </div>
+      </section>
+
+      <section class="side-cards">
+        <div class="card">
+          <h3><i class="bi bi-calendar"></i>Upcoming Live Class</h3>
+          <h4>TikTok Shop Product Research</h4>
+          <p>May 25, 2024</p>
+          <p>7:00 PM GMT +8</p>
+          <button onclick="showPayment()">Join Live Class</button>
+        </div>
+
+        <div class="card"><h3><i class="bi bi-megaphone"></i>Announcements</h3>
+          <p>Welcome to the program! Please complete payment to unlock your full training dashboard.</p>
+        </div>
+      </section>
+    </div>
+
+    <footer><i class="bi bi-star-fill"></i>Stay consistent, keep learning, and great results will follow.</footer>
+  </main>
+</div>
+
+<div class="modal" id="paymentModal">
+  <div class="modal-box">
+    <h2><i class="bi bi-lock"></i>Course Payment Required</h2>
+    <p>Your enrollment has been received. Please complete your course payment to unlock all lessons, live classes, and training materials.</p>
+    <button onclick="closePayment()">Okay, I Understand</button>
+  </div>
+</div>
+
+<script>
+// Toggle Sidebar on Mobile
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  sidebar.classList.toggle('active');
+  overlay.classList.toggle('active');
+}
+
+// Close sidebar when clicking on nav items
+const navLinks = document.querySelectorAll('nav a');
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (window.innerWidth <= 480) {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+    }
+  });
+});
+
+// Check if user is logged in
+window.addEventListener('load', function() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) {
+    window.location.href = 'login.html';
+    return;
+  }
+  
+  // Update UI with user data
+  document.getElementById('userName').textContent = currentUser.name;
+  document.getElementById('welcomeHeader').innerHTML = '<i class="bi bi-hand-thumbs-up"></i>Welcome back, ' + currentUser.name + '!';
+  
+  // Show referral info
+  const referralInfo = document.getElementById('referralInfo');
+  referralInfo.innerHTML = '<strong>Your Referral Code:</strong><br>' + currentUser.referralCode + '<br><strong>Referrals:</strong> ' + currentUser.referrals;
+});
+
+function showPayment(){
+  document.getElementById("paymentModal").style.display="flex";
+}
+
+function closePayment(){
+  document.getElementById("paymentModal").style.display="none";
+}
+
+function logout(){
+  localStorage.removeItem('currentUser');
+  window.location.href = 'login.html';
+}
+</script>
+
+</body>
+</html>

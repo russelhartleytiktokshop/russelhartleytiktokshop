@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sophie Seller Academy</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fff0f6, #f8f4ff, #eefcff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      overflow-x: hidden;
+      color: #1f2937;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    .circle.one {
+      width: 300px;
+      height: 300px;
+      background: #ff7eb6;
+      left: -120px;
+      top: 80px;
+    }
+
+    .circle.two {
+      width: 380px;
+      height: 380px;
+      background: #b9a7ff;
+      right: -130px;
+      bottom: -150px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .brand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 35px;
+    }
+
+    .logo {
+      font-size: 40px;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand h1 {
+      font-size: 28px;
+    }
+
+    .brand h1 span {
+      color: #ff3d85;
+    }
+
+    .brand p {
+      font-size: 14px;
+      color: #6b7280;
+      text-align: left;
+    }
+
+    h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 35px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+    }
+
+    .card h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #6b7280;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #ff3d85;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background: #ff3d85;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    button:hover {
+      background: #e62f72;
+    }
+
+    .switch {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .switch span {
+      color: #ff3d85;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 45px;
+      gap: 15px;
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .feature {
+      background: rgba(255,255,255,0.55);
+      padding: 12px;
+      border-radius: 12px;
+      width: 33%;
+    }
+
+    .feature i {
+      font-size: 32px;
+      color: #ff3d85;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .referral-page {
+      display: none;
+      text-align: center;
+    }
+
+    .referral-page h2 {
+      margin-bottom: 15px;
+    }
+
+    .referral-info {
+      background: #fff0f6;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .referral-page input {
+      margin-bottom: 15px;
+    }
+
+    .referral-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .referral-buttons button {
+      flex: 1;
+    }
+
+    .skip-btn {
+      background: #9ca3af !important;
+    }
+
+    .skip-btn:hover {
+      background: #6b7280 !important;
+    }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 28px;
+      }
+
+      .features {
+        flex-direction: column;
+      }
+
+      .feature {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0;
+      }
+
+      .circle {
+        display: none;
+      }
+
+      .container {
+        max-width: 100%;
+        padding: 16px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .brand {
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+
+      .brand h1 {
+        font-size: 18px;
+        line-height: 1.2;
+      }
+
+      .brand p {
+        font-size: 12px;
+      }
+
+      h2 {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        font-size: 12px;
+        margin-bottom: 16px;
+      }
+
+      .card {
+        border-radius: 14px;
+        padding: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      }
+
+      .card h3 {
+        font-size: 20px;
+        margin-bottom: 6px;
+      }
+
+      .card p {
+        font-size: 12px;
+        margin-bottom: 16px;
+      }
+
+      input {
+        padding: 12px;
+        margin-bottom: 12px;
+        font-size: 14px;
+        border-radius: 8px;
+      }
+
+      button {
+        padding: 12px;
+        font-size: 14px;
+        border-radius: 8px;
+        margin-top: 4px;
+      }
+
+      .switch {
+        margin-top: 16px;
+        font-size: 12px;
+        gap: 4px;
+      }
+
+      .switch span {
+        display: inline;
+      }
+
+      .message {
+        margin-top: 12px;
+        font-size: 12px;
+      }
+
+      .features {
+        flex-direction: column;
+        margin-top: 30px;
+        gap: 12px;
+        font-size: 12px;
+      }
+
+      .feature {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+      }
+
+      .feature i {
+        font-size: 28px;
+        margin-bottom: 6px;
+      }
+
+      .feature b {
+        font-size: 12px;
+      }
+
+      .referral-page h2 {
+        font-size: 20px;
+      }
+
+      .referral-info {
+        padding: 14px;
+        margin: 14px 0;
+        font-size: 12px;
+      }
+
+      .referral-info p {
+        margin: 6px 0;
+        line-height: 1.4;
+      }
+
+      #referralCode {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .container {
+        padding: 12px;
+      }
+
+      .brand {
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .logo {
+        width: 45px;
+        height: 45px;
+      }
+
+      .brand h1 {
+        font-size: 16px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .card h3 {
+        font-size: 18px;
+      }
+
+      input {
+        padding: 11px;
+        margin-bottom: 10px;
+        font-size: 13px;
+      }
+
+      button {
+        padding: 11px;
+        font-size: 13px;
+      }
+
+      .features {
+        margin-top: 24px;
+        gap: 10px;
+      }
+
+      .feature {
+        padding: 10px;
+      }
+
+      .feature i {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="circle one"></div>
+  <div class="circle two"></div>
+
+  <div class="container">
+    <div class="brand">
+      <div class="logo"><img src="bag-music-2-svgrepo-com.svg" alt="Logo"></div>
+      <div>
+        <h1><span>RUSSEL HARTLEY</span> Digital Seller Masterclass</h1>
+        
+      </div>
+    </div>
+
+    <h2 id="welcomeText">Welcome Back!</h2>
+    <p class="subtitle" id="subText">Sign in to continue your TikTok Shop training journey.</p>
+
+    <div class="card">
+      <h3 id="formTitle">Sign In</h3>
+      <p id="formDesc">Enter your details to access your account</p>
+
+      <form id="authForm">
+        <input type="text" id="name" placeholder="Full Name" style="display:none;">
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit" id="submitBtn">Sign In</button>
+      </form>
+
+      <div class="switch">
+        <span id="switchText">Don't have an account?</span>
+        <span onclick="toggleForm()" id="switchBtn">Enroll Now</span>
+      </div>
+
+      <div class="message" id="message"></div>
+    </div>
+
+    <div class="card referral-page" id="referralPage">
+      <h2>Do you have a Referral Code?</h2>
+      <p class="subtitle">Enter your referral code to get credit</p>
+      
+      <div class="referral-info">
+        <p><strong>Get your referral code from the Telegram admin</strong></p>
+        <p>Please contact the telegram admin to get referral code</p>
+      </div>
+
+      <form id="referralForm">
+        <input type="text" id="referralCode" placeholder="Enter Referral Code" autocomplete="off" required>
+        <button type="submit">Verify Code</button>
+      </form>
+
+      <div class="message" id="referralMessage"></div>
+    </div>
+
+    <div class="features">
+      <div class="feature"><i class="bi bi-book"></i><b>Step-by-Step Lessons</b><br>Easy to follow</div>
+      <div class="feature"><i class="bi bi-award"></i><b>Proven Strategies</b><br>Learn what works</div>
+      <div class="feature"><i class="bi bi-headset"></i><b>Support</b><br>We help you grow</div>
+    </div>
+  </div>
+
+  <script>
+    let isSignup = false;
+    let pendingUser = null;
+    let academyUsers = JSON.parse(localStorage.getItem("academyUsers")) || [];
+
+    function generateReferralCode(name) {
+      let prefix = name.replace(/\s/g, '').substring(0, 4).toUpperCase();
+      let random = Math.floor(1000 + Math.random() * 9000);
+      return prefix + random;
+    }
+
+    function showReferralPage(user) {
+      pendingUser = user;
+      document.getElementById("authForm").style.display = "none";
+      document.getElementById("referralPage").style.display = "block";
+      document.getElementById("referralCode").value = "";
+      document.getElementById("referralMessage").textContent = "";
+      document.getElementById("referralMessage").style.color = "";
+    }
+
+    function completeSignup(user, referralCode) {
+      if (referralCode) {
+        const referrer = academyUsers.find(u => u.referralCode === referralCode);
+        if (referrer) {
+          referrer.referrals++;
+        }
+      }
+
+      academyUsers.push(user);
+      localStorage.setItem("academyUsers", JSON.stringify(academyUsers));
+
+      const message = document.getElementById("referralMessage");
+      message.style.color = "green";
+      message.textContent = `Account created! Your referral code is: ${user.referralCode}. Redirecting to login...`;
+
+      setTimeout(() => {
+        toggleForm();
+        document.getElementById("authForm").style.display = "block";
+        document.getElementById("referralPage").style.display = "none";
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("name").value = "";
+      }, 2000);
+    }
+
+    function toggleForm() {
+      isSignup = !isSignup;
+
+      const nameInput = document.getElementById("name");
+      const formTitle = document.getElementById("formTitle");
+      const formDesc = document.getElementById("formDesc");
+      const submitBtn = document.getElementById("submitBtn");
+      const switchText = document.getElementById("switchText");
+      const switchBtn = document.getElementById("switchBtn");
+      const welcomeText = document.getElementById("welcomeText");
+      const subText = document.getElementById("subText");
+      const message = document.getElementById("message");
+
+      message.textContent = "";
+
+      if (isSignup) {
+        nameInput.style.display = "block";
+        formTitle.textContent = "Create Account";
+        formDesc.textContent = "Enroll and begin your TikTok Shop training";
+        submitBtn.textContent = "Sign Up";
+        switchText.textContent = "Already have an account?";
+        switchBtn.textContent = "Sign In";
+        welcomeText.textContent = "Join Sophie Seller Academy";
+        subText.textContent = "Create your account and start learning today.";
+      } else {
+        nameInput.style.display = "none";
+        formTitle.textContent = "Sign In";
+        formDesc.textContent = "Enter your details to access your account";
+        submitBtn.textContent = "Sign In";
+        switchText.textContent = "Don't have an account?";
+        switchBtn.textContent = "Enroll Now";
+        welcomeText.textContent = "Welcome Back!";
+        subText.textContent = "Sign in to continue your TikTok Shop training journey.";
+      }
+    }
+
+    document.getElementById("authForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const message = document.getElementById("message");
+
+      if (password.length < 6) {
+        message.style.color = "red";
+        message.textContent = "Password must be at least 6 characters.";
+        return;
+      }
+
+      if (isSignup) {
+        if (name === "") {
+          message.style.color = "red";
+          message.textContent = "Please enter your full name.";
+          return;
+        }
+
+        if (academyUsers.find(u => u.email === email)) {
+          message.style.color = "red";
+          message.textContent = "Email already registered.";
+          return;
+        }
+
+        const newCode = generateReferralCode(name);
+        const user = {
+          name: name,
+          email: email,
+          password: password,
+          referralCode: newCode,
+          referrals: 0
+        };
+
+        message.style.color = "green";
+        message.textContent = "Account info validated. Now enter referral code...";
+
+        setTimeout(() => {
+          showReferralPage(user);
+        }, 800);
+
+      } else {
+        const savedUser = academyUsers.find(u => u.email === email);
+
+        if (!savedUser) {
+          message.style.color = "red";
+          message.textContent = "No account found. Please enroll first.";
+          return;
+        }
+
+        if (password === savedUser.password) {
+          message.style.color = "green";
+          message.textContent = "Login successful. Welcome, " + savedUser.name + "!";
+
+          localStorage.setItem("currentUser", JSON.stringify(savedUser));
+
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1000);
+
+        } else {
+          message.style.color = "red";
+          message.textContent = "Incorrect email or password.";
+        }
+      }
+    });
+
+    document.getElementById("referralForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const referralCode = document.getElementById("referralCode").value.trim().toUpperCase();
+      const referralMessage = document.getElementById("referralMessage");
+
+      if (!referralCode) {
+        referralMessage.style.color = "red";
+        referralMessage.textContent = "Referral code is required. Please enter a valid code.";
+        return;
+      }
+
+      const referrer = academyUsers.find(u => u.referralCode === referralCode);
+
+      if (referrer || referralCode === "REF123") {
+        if (referrer) {
+          referrer.referrals++;
+        }
+        referralMessage.style.color = "green";
+        referralMessage.textContent = "Valid referral code! Proceeding...";
+        setTimeout(() => {
+          completeSignup(pendingUser, referralCode);
+        }, 800);
+      } else {
+        referralMessage.style.color = "red";
+        referralMessage.textContent = `Invalid referral code: "${referralCode}". Please contact telegram admin.`;
+      }
+    });
+  </script>
+
+</body>
+</html>
