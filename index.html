@@ -52,6 +52,11 @@ footer{text-align:center;margin:24px;color:#555}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;justify-content:center;align-items:center;z-index:100}
 .modal-box{width:420px;background:white;padding:32px;border-radius:16px;text-align:center}
 .modal-box h2{margin-bottom:15px}.modal-box p{color:#555;line-height:1.6;margin-bottom:24px}
+.modal-box input{width:100%;padding:14px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;text-transform:uppercase;margin-bottom:12px}
+.modal-box input:focus{border-color:#ec2f7a}
+.modal-actions{display:flex;gap:10px}.modal-actions button{flex:1}
+.cancel-btn{background:#777}.cancel-btn:hover{background:#555}
+.access-message{font-size:13px;font-weight:700;min-height:18px;margin-top:12px}
 @media(max-width:900px){.app{flex-direction:column}.sidebar{width:100%}.grid{grid-template-columns:1fr}.hero img{display:none}.stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){.sidebar{padding:16px 14px}.logo{margin-bottom:20px}.logo h2{font-size:14px}.logo p{font-size:10px}nav a{padding:12px 12px;font-size:14px;margin-bottom:6px}.help-box{margin-top:40px;padding:16px}.main{padding:16px}header{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:16px}header h1{font-size:20px}header p{font-size:13px}.profile{flex-direction:column;align-items:flex-start;gap:8px}.profile i{font-size:32px}.hero{padding:16px;min-height:auto;flex-direction:column;background-attachment:scroll}.hero h2{font-size:20px}.hero p{font-size:13px;max-width:100%;margin-bottom:12px}.hero img{width:100%;max-width:200px}.stats{grid-template-columns:1fr}.stats div{padding:12px}.stats b{font-size:20px}.stats span{font-size:11px}.card{padding:16px}.card h3{font-size:20px}.lesson{gap:12px;flex-direction:column}.lesson img{width:100%;height:auto}.course{grid-template-columns:40px 1fr 60px;gap:10px}.course img{width:35px;height:35px}.course b{font-size:12px}.modal-box{width:90%;max-width:400px}.footer{font-size:12px}}
 @media(max-width:480px){.menu-toggle{display:block}.sidebar{position:fixed;left:0;top:0;height:100vh;width:270px;z-index:100;transform:translateX(-100%);transition:transform 0.3s ease;overflow-y:auto}.sidebar.active{transform:translateX(0)}.sidebar-overlay{display:none}.sidebar-overlay.active{display:block}nav{display:block}nav a{padding:12px 12px;font-size:13px;margin-bottom:6px}body{overflow-y:auto}.sidebar{padding:12px 10px}.logo{margin-bottom:16px}.logo h2{font-size:12px}.logo p{font-size:9px}.help-box{margin-top:20px;padding:12px;font-size:12px}.help-box h3{font-size:14px}button{padding:10px 16px;font-size:13px;margin-top:8px}.logout-btn{padding:8px 12px;font-size:11px}.main{padding:12px}header{gap:8px;margin-bottom:12px}header h1{font-size:16px}header p{font-size:11px}.profile{gap:8px}.profile i{font-size:28px}.profile small{font-size:10px}.hero{padding:12px}.hero h2{font-size:18px}.hero p{font-size:12px;margin-bottom:10px}.hero img{max-width:150px}.grid{gap:12px}.card{padding:12px}.card h3{font-size:16px}.progress-head{font-size:12px}.stats{gap:8px}.stats div{padding:10px}.stats b{font-size:18px}.stats span{font-size:10px}.lesson{gap:10px}.lesson h4{font-size:14px}.lesson p{font-size:11px}.course{gap:8px;padding:8px}.course b{font-size:11px}.course small{font-size:10px}.card-title{margin-bottom:12px}.card-title span{font-size:12px}.side-cards{gap:12px}.side-cards h4{margin:10px 0}.side-cards p{font-size:12px;margin-bottom:6px}.modal-box{width:95%;padding:20px;border-radius:12px}.modal-box h2{font-size:16px}.modal-box p{font-size:12px;margin-bottom:16px}.referral-box{padding:12px;font-size:11px}.referral-box strong{font-size:12px}}
@@ -199,9 +204,16 @@ footer{text-align:center;margin:24px;color:#555}
 
 <div class="modal" id="paymentModal">
   <div class="modal-box">
-    <h2><i class="bi bi-lock"></i>Course Payment Required</h2>
-    <p>Your enrollment has been received. Please complete your course payment to unlock all lessons, live classes, and training materials.</p>
-    <button onclick="closePayment()">Okay, I Understand</button>
+    <h2><i class="bi bi-lock"></i>Paid Access Required</h2>
+    <p>Enter your paid student code to open the training courses.</p>
+    <form id="paidAccessForm">
+      <input type="text" id="paidAccessCode" placeholder="Enter code" autocomplete="off" required>
+      <div class="modal-actions">
+        <button type="submit">Unlock Courses</button>
+        <button type="button" class="cancel-btn" onclick="closePayment()">Cancel</button>
+      </div>
+    </form>
+    <div class="access-message" id="paidAccessMessage"></div>
   </div>
 </div>
 
@@ -246,11 +258,34 @@ window.addEventListener('load', function() {
 
 function showPayment(){
   document.getElementById("paymentModal").style.display="flex";
+  document.getElementById("paidAccessCode").focus();
 }
 
 function closePayment(){
   document.getElementById("paymentModal").style.display="none";
+  document.getElementById("paidAccessCode").value = "";
+  document.getElementById("paidAccessMessage").textContent = "";
 }
+
+document.getElementById("paidAccessForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const code = document.getElementById("paidAccessCode").value.trim().toUpperCase();
+  const message = document.getElementById("paidAccessMessage");
+
+  if (code === "PAID123") {
+    localStorage.setItem("paidAccess", "true");
+    message.style.color = "green";
+    message.textContent = "Access granted. Opening paid courses...";
+
+    setTimeout(() => {
+      window.location.href = "paid.html";
+    }, 500);
+  } else {
+    message.style.color = "red";
+    message.textContent = "Invalid code. Please enter the paid access code.";
+  }
+});
 
 function logout(){
   localStorage.removeItem('currentUser');

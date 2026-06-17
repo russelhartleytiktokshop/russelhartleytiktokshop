@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paid Training | Russel Hartley Digital Seller</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',-apple-system,'Segoe UI',sans-serif}
+body{background:#f7f8fb;color:#171725;min-height:100vh}
+button{border:none;background:#ec2f7a;color:white;padding:13px 20px;border-radius:8px;font-weight:700;cursor:pointer}
+button:hover{background:#d81f68}
+.gate{min-height:100vh;display:grid;place-items:center;padding:18px;background:linear-gradient(135deg,#fff3f8,#f4fbff)}
+.gate-card{width:100%;max-width:440px;background:white;border-radius:14px;padding:30px;box-shadow:0 18px 45px rgba(24,24,38,.13)}
+.gate-brand{display:flex;gap:12px;align-items:center;margin-bottom:24px}
+.gate-brand img{width:48px;height:48px;object-fit:contain}
+.gate-brand h1{font-size:20px}.gate-brand span{color:#ec2f7a}.gate-brand p{font-size:12px;color:#777;margin-top:3px}
+.gate-card h2{font-size:26px;margin-bottom:8px}.gate-card p{color:#666;line-height:1.6;margin-bottom:20px}
+.code-row{display:flex;gap:10px}.code-row input{flex:1;padding:14px;border:1px solid #ddd;border-radius:8px;font-size:15px;outline:none;text-transform:uppercase}
+.code-row input:focus{border-color:#ec2f7a}.message{font-weight:700;font-size:13px;margin-top:14px;min-height:18px}
+.app{display:none;min-height:100vh}
+.sidebar{width:270px;background:#fff;padding:28px 22px;border-right:1px solid #eee;position:fixed;left:0;top:0;bottom:0;overflow-y:auto}
+.logo{display:flex;gap:12px;align-items:center;margin-bottom:35px}
+.logo-icon{width:42px;height:42px;background:#111;color:white;border-radius:10px;display:grid;place-items:center;font-size:25px}.logo h2{font-size:17px}.logo span{color:#ec2f7a}.logo p{font-size:12px;color:#777}
+nav a{display:block;padding:14px 16px;margin-bottom:8px;color:#555;border-radius:8px;cursor:pointer;text-decoration:none}
+nav a.active,nav a:hover{background:#ffe7f1;color:#ec2f7a;font-weight:700}
+nav i,.card i,.lesson-card i,.topbar i{margin-right:8px}
+.help-box{margin-top:60px;background:#fff1f7;padding:20px;border-radius:8px}
+.help-box p{color:#555;line-height:1.5;margin:12px 0}
+.main{margin-left:270px;padding:28px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:16px}
+.topbar h1{font-size:27px}.topbar p{color:#777;margin-top:5px}
+.profile{display:flex;align-items:center;gap:12px}.profile small{display:block;color:#777}
+.hero{background:url('elegant-smiling-woman-glasses-striped-shirt-using-laptop-computer-while-siting-table-kitchen_171337-13030.avif') center/cover;min-height:220px;border-radius:12px;padding:34px;display:flex;align-items:flex-end;margin-bottom:24px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.95),rgba(255,255,255,.72),rgba(255,255,255,.2))}
+.hero-content{position:relative;max-width:560px}.hero h2{font-size:29px;margin-bottom:10px}.hero p{color:#333;line-height:1.6;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}
+.card{background:white;border-radius:10px;padding:22px;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+.card-title{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:16px}.card-title span{color:#ec2f7a;font-weight:700}
+.course{display:grid;grid-template-columns:52px 1fr 95px;align-items:center;gap:14px;padding:12px;border-bottom:1px solid #eee;cursor:pointer}
+.course:hover{background:#fff4f9}.course img{width:44px;height:44px;object-fit:contain}.course b{font-size:14px}.course small{font-weight:700;color:#14845f}
+.mini{height:8px;background:#eee;border-radius:30px;overflow:hidden;margin-top:8px}.mini span{display:block;height:100%;background:#ec2f7a;border-radius:30px}
+.locked small{color:#777}.locked{cursor:not-allowed;opacity:.7}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #eee;border-radius:8px;overflow:hidden}.stats div{text-align:center;padding:18px;border-right:1px solid #eee}.stats div:last-child{border-right:0}.stats b{font-size:25px;display:block}.stats span{font-size:12px;color:#666}
+.announcement p{color:#555;line-height:1.6;margin-top:12px}
+.mini-page,.resource-page{display:none}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.back-btn{background:#171725}.back-btn:hover{background:#333344}
+.lesson-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.lesson-card{background:white;border-radius:10px;padding:22px;box-shadow:0 4px 15px rgba(0,0,0,.05);min-height:190px;display:flex;flex-direction:column;justify-content:space-between}
+.lesson-card h3{font-size:18px;margin-bottom:10px}.lesson-card p{color:#555;line-height:1.6;margin-bottom:16px}.lesson-card small{font-weight:700;color:#14845f}
+.lesson-card.locked small{color:#777}.outline{background:white;color:#ec2f7a;border:1px solid #ec2f7a}.outline:hover{background:#fff1f7;color:#ec2f7a}
+.resource-panel{background:white;border-radius:10px;padding:22px;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+.resource-panel h3{margin-bottom:10px}.resource-panel p{color:#555;line-height:1.7;margin-bottom:16px}
+.resource-list{display:grid;gap:12px;margin-top:18px}.resource-item{border:1px solid #eee;border-radius:8px;padding:16px;color:#666;background:#fafafa}
+.video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0}.image-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin:20px 0}
+.video-card{background:#111;border-radius:8px;overflow:hidden;color:white}.video-frame{aspect-ratio:16/9;background:linear-gradient(135deg,#171725,#ec2f7a);display:grid;place-items:center;font-size:42px}.video-card div:last-child{padding:14px}.video-card h4{font-size:15px;margin-bottom:6px}.video-card a{color:#ffd7e6;font-weight:700;text-decoration:none;font-size:13px}
+.image-card{background:#fff;border:1px solid #eee;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;min-height:100%;box-shadow:0 4px 14px rgba(0,0,0,.04);transition:transform .2s ease,box-shadow .2s ease;cursor:pointer}.image-card:hover,.image-card:focus{transform:translateY(-3px);box-shadow:0 12px 24px rgba(24,24,38,.09);outline:none}.image-card:focus{border-color:#ec2f7a}.image-card img{width:100%;aspect-ratio:5/7;height:auto;object-fit:cover;display:block;background:#f4f4f6}.image-card div{padding:14px}.image-card h4{font-size:15px;margin-bottom:6px}.image-card p{font-size:13px;margin:0;color:#666;line-height:1.5}
+.image-viewer{position:fixed;inset:0;background:rgba(10,10,18,.76);display:none;align-items:center;justify-content:center;padding:22px;z-index:200}.image-viewer.active{display:flex}.image-viewer-card{width:min(980px,100%);max-height:92vh;background:white;border-radius:10px;overflow:hidden;display:grid;grid-template-columns:minmax(280px,.72fr) minmax(240px,.28fr);box-shadow:0 24px 70px rgba(0,0,0,.35)}.image-viewer-media{background:#111;display:grid;place-items:center;min-height:0}.image-viewer-media img{width:100%;height:100%;max-height:92vh;object-fit:contain;display:block}.image-viewer-copy{padding:22px;display:flex;flex-direction:column;gap:12px}.image-viewer-copy h3{font-size:22px}.image-viewer-copy p{color:#555;line-height:1.7}.viewer-close{align-self:flex-end;width:42px;height:42px;padding:0;border-radius:50%;display:grid;place-items:center;font-size:20px;background:#171725}.viewer-close:hover{background:#333344}.viewer-hint{font-size:12px;color:#888;margin-top:auto}
+.checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}.check-item{display:flex;gap:10px;align-items:flex-start;background:#fff7fb;border:1px solid #ffd7e6;border-radius:8px;padding:14px;color:#444}.check-item i{color:#ec2f7a;margin-top:2px}
+.support-form{display:grid;gap:12px;margin-top:16px}.support-form input,.support-form select,.support-form textarea{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;font-size:14px;outline:none;background:white}.support-form textarea{min-height:130px;resize:vertical}.support-form input:focus,.support-form select:focus,.support-form textarea:focus{border-color:#ec2f7a}
+.support-actions{display:flex;gap:10px;flex-wrap:wrap}.support-actions button{flex:1;min-width:180px}.telegram-btn{background:#229ed9}.telegram-btn:hover{background:#168ac2}
+.telegram-fallback{display:none;background:#eef8ff;border:1px solid #bfe8ff;color:#165f86;border-radius:8px;padding:14px;line-height:1.5}.telegram-fallback a{color:#0b8ed0;font-weight:700}
+.complaint-history{display:grid;gap:12px;margin-top:18px}.complaint-card{border:1px solid #eee;border-radius:8px;padding:14px;background:#fafafa}.complaint-card b{display:block;margin-bottom:6px}.complaint-card small{color:#777}.status-pill{display:inline-block;background:#fff1f7;color:#ec2f7a;border-radius:30px;padding:5px 10px;font-size:12px;font-weight:700;margin-top:8px}
+@media(max-width:900px){.sidebar{position:static;width:100%;height:auto}.main{margin-left:0}.app{flex-direction:column}.grid,.lesson-grid{grid-template-columns:1fr}.topbar{align-items:flex-start;flex-direction:column}.hero{padding:22px}}
+@media(max-width:700px){.image-viewer-card{grid-template-columns:1fr}.image-viewer-media img{max-height:64vh}.image-viewer-copy{padding:18px}.image-viewer-copy h3{font-size:19px}}
+@media(max-width:520px){.gate-card{padding:22px}.code-row{flex-direction:column}.main{padding:16px}.sidebar{padding:16px}.hero h2{font-size:22px}.topbar h1{font-size:21px}.course{grid-template-columns:42px 1fr;gap:10px}.course small{grid-column:2}.stats{grid-template-columns:1fr}.stats div{border-right:0;border-bottom:1px solid #eee}.stats div:last-child{border-bottom:0}.video-grid,.image-grid,.checklist{grid-template-columns:1fr}.image-viewer{padding:12px}.image-viewer-copy{gap:8px}.viewer-hint{display:none}}
+</style>
+</head>
+<body>
+<section class="gate" id="gate">
+  <div class="gate-card">
+    <div class="gate-brand">
+      <img src="bag-music-2-svgrepo-com.svg" alt="Logo">
+      <div>
+        <h1><span>Russel Hartley</span> Digital Seller</h1>
+        <p>Paid TikTok Shop Training</p>
+      </div>
+    </div>
+    <h2>Enter Paid Access Code</h2>
+    <p>This page is for paid students only. Enter your unique code to unlock the paid training dashboard.</p>
+    <form class="code-row" id="codeForm">
+      <input type="text" id="paidCode" placeholder="Access code" autocomplete="off" required>
+      <button type="submit">Open</button>
+    </form>
+    <div class="message" id="codeMessage"></div>
+  </div>
+</section>
+
+<div class="app" id="app">
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon"><i class="bi bi-music-note"></i></div>
+      <div>
+        <h2><span>Russel Hartley</span> Digital Seller</h2>
+        <p>Paid Student Area</p>
+      </div>
+    </div>
+    <nav>
+      <a class="active" onclick="showDashboard()"><i class="bi bi-columns-gap"></i>Dashboard</a>
+      <a onclick="showBeginnerTraining()"><i class="bi bi-book"></i>Beginner Training</a>
+      <a onclick="showDashboard()"><i class="bi bi-bag-check"></i>Shop Training</a>
+      <a onclick="showDashboard()"><i class="bi bi-download"></i>Downloads</a>
+      <a onclick="showComplaints()"><i class="bi bi-chat-dots"></i>Complaints</a>
+      <a href="index.html"><i class="bi bi-arrow-left"></i>Main Dashboard</a>
+    </nav>
+    <div class="help-box">
+      <h3><i class="bi bi-headset"></i>Paid Support</h3>
+      <p>Use your training dashboard and starter lessons to begin setting up your TikTok Shop workflow.</p>
+      <button onclick="showComplaints()" style="margin-bottom:10px"><i class="bi bi-chat-dots"></i>Send Complaint</button>
+      <button onclick="lockPaidPage()">Lock Page</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section id="dashboardPage">
+      <header class="topbar">
+        <div>
+          <h1><i class="bi bi-unlock"></i>Paid Training Dashboard</h1>
+          <p>The beginner training area is open for paid students.</p>
+        </div>
+        <div class="profile">
+          <i class="bi bi-person-circle" style="font-size:46px;color:#ec2f7a"></i>
+          <div><b id="userName">Paid Student</b><small>Active Access</small></div>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Welcome to your paid TikTok Shop training</h2>
+          <p>Start with the beginner shop training. The first two beginner lessons are open now so you can begin learning immediately.</p>
+          <button onclick="showBeginnerTraining()">Open Beginner Training</button>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section class="card">
+          <div class="card-title">
+            <h3>Training Features</h3>
+            <span>2 Open</span>
+          </div>
+          <div class="course" onclick="showBeginnerTraining()">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="">
+            <div><b>Beginner TikTok Shop Training</b><div class="mini"><span style="width:50%"></span></div></div>
+            <small><i class="bi bi-unlock"></i>Open</small>
+          </div>
+          <div class="course" onclick="showBeginnerTraining()">
+            <img src="https://cdn-icons-png.flaticon.com/512/751/751463.png" alt="">
+            <div><b>Beginner Shop Setup Checklist</b><div class="mini"><span style="width:50%"></span></div></div>
+            <small><i class="bi bi-unlock"></i>Open</small>
+          </div>
+          <div class="course locked">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="">
+            <div><b>Content & Promotion Strategy</b><div class="mini"></div></div>
+            <small><i class="bi bi-lock"></i>Locked</small>
+          </div>
+          <div class="course locked">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png" alt="">
+            <div><b>Scaling & Store Management</b><div class="mini"></div></div>
+            <small><i class="bi bi-lock"></i>Locked</small>
+          </div>
+        </section>
+
+        <section class="card announcement">
+          <h3><i class="bi bi-graph-up"></i>Your Paid Progress</h3>
+          <div class="stats" style="margin-top:18px">
+            <div><b>2</b><span>Lessons Open</span></div>
+            <div><b>0</b><span>Completed</span></div>
+            <div><b>1</b><span>Course Active</span></div>
+          </div>
+          <p>Click the beginner training card to open the mini training page and view the available starter material.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="mini-page" id="beginnerPage">
+      <div class="toolbar">
+        <div>
+          <h1><i class="bi bi-book"></i>Beginner TikTok Shop Training</h1>
+          <p style="color:#777;margin-top:5px">Your starter lessons and shop setup steps.</p>
+        </div>
+        <button class="back-btn" onclick="showDashboard()"><i class="bi bi-arrow-left"></i>Back</button>
+      </div>
+
+      <div class="lesson-grid">
+        <article class="lesson-card">
+          <div>
+            <small><i class="bi bi-unlock"></i>Open Lesson 1</small>
+            <h3>Beginner TikTok Shop Overview</h3>
+            <p>Open the beginner class page where video links, images, and lesson materials will be added for this training.</p>
+          </div>
+          <button class="outline" onclick="showBeginnerResources()">Start Lesson</button>
+        </article>
+
+        <article class="lesson-card">
+          <div>
+            <small><i class="bi bi-unlock"></i>Open Lesson 2</small>
+            <h3>Shop Setup Checklist</h3>
+            <p>This is a practical course. To commence, you need your materials ready and you have to purchase the products required for your shop setup practice.</p>
+          </div>
+          <button class="outline" onclick="showShopSetup()">Prepare Materials</button>
+        </article>
+
+        <article class="lesson-card locked">
+          <div>
+            <small><i class="bi bi-lock"></i>Locked</small>
+            <h3>Winning Product Research</h3>
+            <p>This lesson opens after the beginner starter section is completed.</p>
+          </div>
+          <button disabled>Locked</button>
+        </article>
+
+        <article class="lesson-card locked">
+          <div>
+            <small><i class="bi bi-lock"></i>Locked</small>
+            <h3>Content & Promotion Plan</h3>
+            <p>This lesson opens later in the paid training path.</p>
+          </div>
+          <button disabled>Locked</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="resource-page" id="beginnerResourcesPage">
+      <div class="toolbar">
+        <div>
+          <h1><i class="bi bi-play-btn"></i>Beginner Class Materials</h1>
+          <p style="color:#777;margin-top:5px">Video links, class images, and beginner lesson resources will appear here.</p>
+        </div>
+        <button class="back-btn" onclick="showBeginnerTraining()"><i class="bi bi-arrow-left"></i>Back</button>
+      </div>
+
+      <div class="resource-panel">
+        <h3>Beginner TikTok Shop Overview</h3>
+        <p>Use this page for the beginner class videos, images, and lesson resources. Students should watch the videos first and review the images before moving into the practical shop setup checklist.</p>
+
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-frame"><i class="bi bi-play-circle"></i></div>
+            <div>
+              <h4>Video 1: TikTok Shop Beginner Introduction</h4>
+              <a href="https://www.youtube.com/results?search_query=tiktok+shop+beginner+tutorial" target="_blank">Open video link</a>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-frame"><i class="bi bi-play-circle"></i></div>
+            <div>
+              <h4>Video 2: Setting Up Your Seller Profile</h4>
+              <a href="https://www.youtube.com/results?search_query=tiktok+shop+seller+profile+setup" target="_blank">Open video link</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="photo_1_2026-06-17_01-28-58.jpg" alt="TikTok Shop class welcome preview">
+            <div>
+              <h4>Start With the Big Picture</h4>
+              <p>A clean first look at the TikTok Shop journey before students move into setup and selling steps.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_2_2026-06-17_01-28-58.jpg" alt="TikTok Shop introduction lesson slide">
+            <div>
+              <h4>What TikTok Shop Really Is</h4>
+              <p>Use this card to explain the marketplace, the customer journey, and why short video commerce works.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_3_2026-06-17_01-28-58.jpg" alt="TikTok Shop and Shopify integration guide">
+            <div>
+              <h4>Connect the Store Workflow</h4>
+              <p>A visual guide for showing how product listings, orders, payments, and delivery fit together.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_4_2026-06-17_01-28-58.jpg" alt="Student guide to TikTok shopping">
+            <div>
+              <h4>Money Path on TikTok</h4>
+              <p>Break down the simple path from product discovery to a sale students can actually understand.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_5_2026-06-17_01-28-58.jpg" alt="TikTok product selection criteria">
+            <div>
+              <h4>Pick Products With Purpose</h4>
+              <p>A quick checklist for spotting items with demand, visual appeal, and practical profit potential.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_6_2026-06-17_01-28-59.jpg" alt="TikTok Shop account setup checklist">
+            <div>
+              <h4>Account Setup Map</h4>
+              <p>Guide students through documents, inventory, category choices, and the first seller-center steps.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_7_2026-06-17_01-28-59.jpg" alt="TikTok Shop opportunity lesson">
+            <div>
+              <h4>Spot the Opportunity</h4>
+              <p>Show how trends, product gaps, and competitor moves can become a focused shop idea.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_8_2026-06-17_01-28-59.jpg" alt="TikTok Shop ecosystem overview">
+            <div>
+              <h4>Understand the Ecosystem</h4>
+              <p>Keep the roles clear: creators, affiliates, customers, sellers, and the content that connects them.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_9_2026-06-17_01-28-59.jpg" alt="TikTok Shop business model guide">
+            <div>
+              <h4>Choose Your Selling Model</h4>
+              <p>Compare affiliate marketing, direct selling, brand building, and content-led store growth.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_10_2026-06-17_01-28-59.jpg" alt="TikTok class roadmap and community tasks">
+            <div>
+              <h4>Follow the Weekly Rhythm</h4>
+              <p>A bright roadmap for lessons, assignments, live sessions, recordings, and community wins.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_11_2026-06-17_01-28-59.jpg" alt="TikTok Shop beginner summary slide">
+            <div>
+              <h4>Recap Before Action</h4>
+              <p>Use the summary slide to pause, check understanding, and prepare students for practice.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_12_2026-06-17_01-28-59.jpg" alt="First TikTok Shop success plan">
+            <div>
+              <h4>Four-Week Success Plan</h4>
+              <p>A simple path from fundamentals to product selection, content creation, and optimization.</p>
+            </div>
+          </div>
+          <div class="image-card">
+            <img src="photo_13_2026-06-17_01-28-59.jpg" alt="TikTok Shop class speaker preview">
+            <div>
+              <h4>Training Room Energy</h4>
+              <p>A strong visual close for the class gallery, keeping the paid lesson area personal and confident.</p>
+            </div>
+          </div>
+        </div>
+        <div class="resource-list">
+          <div class="resource-item"><i class="bi bi-play-circle"></i>Class focus: TikTok Shop basics, beginner seller mindset, and how the training will work.</div>
+          <div class="resource-item"><i class="bi bi-image"></i>Use the class images as visual guides while watching the beginner videos.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="resource-page" id="shopSetupPage">
+      <div class="toolbar">
+        <div>
+          <h1><i class="bi bi-bag-check"></i>Shop Setup Checklist</h1>
+          <p style="color:#777;margin-top:5px">Prepare these materials before starting the practical shop setup class.</p>
+        </div>
+        <button class="back-btn" onclick="showBeginnerTraining()"><i class="bi bi-arrow-left"></i>Back</button>
+      </div>
+
+      <div class="resource-panel">
+        <h3>Materials Needed Before You Commence</h3>
+        <p>This is a practical course. To follow along properly, every student needs the shop materials ready and must purchase products for the class practice.</p>
+        <div class="checklist">
+          <div class="check-item"><i class="bi bi-check-circle-fill"></i><span>TikTok Shop account or TikTok seller center access</span></div>
+          <div class="check-item"><i class="bi bi-check-circle-fill"></i><span>Complete profile details, username, bio, logo, and profile picture</span></div>
+          <div class="check-item"><i class="bi bi-check-circle-fill"></i><span>Products purchased or ready for practical shop setup</span></div>
+          <div class="check-item"><i class="bi bi-check-circle-fill"></i><span>Product photos, videos, names, prices, and descriptions</span></div>
+          <div class="check-item"><i class="bi bi-check-circle-fill"></i><span>Payment, shipping, and delivery information for your shop</span></div>
+          <div class="check-item"><i class="bi bi-check-circle-fill"></i><span>Notebook or document for class notes, tasks, and assignments</span></div>
+        </div>
+
+        <div class="resource-list">
+          <div class="resource-item"><i class="bi bi-bag-check"></i>Class focus: TikTok Shop setup, profile preparation, product readiness, and first listing practice.</div>
+          <div class="resource-item"><i class="bi bi-exclamation-circle"></i>Important: students who do not have products and materials ready may not be able to complete the practical steps during class.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="resource-page" id="complaintPage">
+      <div class="toolbar">
+        <div>
+          <h1><i class="bi bi-chat-dots"></i>Complaints & Responses</h1>
+          <p style="color:#777;margin-top:5px">Submit complaints through Telegram so the support account can receive and respond.</p>
+        </div>
+        <button class="back-btn" onclick="showDashboard()"><i class="bi bi-arrow-left"></i>Back</button>
+      </div>
+
+      <div class="resource-panel">
+        <h3>Send a Complaint to Telegram</h3>
+        <p>Fill this form and click send. Your complaint will be saved here, copied automatically, and the exact Telegram admin chat will open so you can paste and send it.</p>
+
+        <form class="support-form" id="complaintForm">
+          <input type="text" id="complaintName" placeholder="Your name" required>
+          <input type="text" id="complaintTelegram" placeholder="Your Telegram username, example @studentname" required>
+          <select id="complaintTopic" required>
+            <option value="">Select complaint topic</option>
+            <option value="Course access">Course access</option>
+            <option value="Payment issue">Payment issue</option>
+            <option value="Video or image issue">Video or image issue</option>
+            <option value="Shop setup help">Shop setup help</option>
+            <option value="Other complaint">Other complaint</option>
+          </select>
+          <textarea id="complaintText" placeholder="Write your complaint here..." required></textarea>
+          <div class="support-actions">
+            <button type="submit" class="telegram-btn"><i class="bi bi-telegram"></i>Send Through Telegram</button>
+            <button type="button" class="outline" onclick="copyLatestComplaint()">Copy Latest Complaint</button>
+          </div>
+          <div class="telegram-fallback" id="telegramFallback"></div>
+        </form>
+
+    
+        <h3 style="margin-top:24px">Complaint History</h3>
+        <div class="complaint-history" id="complaintHistory"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="image-viewer" id="imageViewer" aria-hidden="true" onclick="closeImageViewer(event)">
+  <div class="image-viewer-card" role="dialog" aria-modal="true" aria-labelledby="viewerTitle">
+    <div class="image-viewer-media">
+      <img id="viewerImage" src="" alt="">
+    </div>
+    <div class="image-viewer-copy">
+      <button class="viewer-close" type="button" onclick="closeImageViewer()" aria-label="Close image viewer"><i class="bi bi-x-lg"></i></button>
+      <h3 id="viewerTitle"></h3>
+      <p id="viewerCaption"></p>
+      <div class="viewer-hint">Click outside or press Esc to close.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PAID_CODE = "PAID123";
+const TELEGRAM_USERNAME = "privatetxt636";
+
+function openPaidPage() {
+  document.getElementById("gate").style.display = "none";
+  document.getElementById("app").style.display = "block";
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (currentUser && currentUser.name) {
+    document.getElementById("userName").textContent = currentUser.name;
+  }
+}
+
+function lockPaidPage() {
+  localStorage.removeItem("paidAccess");
+  document.getElementById("app").style.display = "none";
+  document.getElementById("gate").style.display = "grid";
+  document.getElementById("paidCode").value = "";
+  document.getElementById("codeMessage").textContent = "";
+}
+
+function showDashboard() {
+  document.getElementById("dashboardPage").style.display = "block";
+  document.getElementById("beginnerPage").style.display = "none";
+  document.getElementById("beginnerResourcesPage").style.display = "none";
+  document.getElementById("shopSetupPage").style.display = "none";
+  document.getElementById("complaintPage").style.display = "none";
+}
+
+function showBeginnerTraining() {
+  document.getElementById("dashboardPage").style.display = "none";
+  document.getElementById("beginnerPage").style.display = "block";
+  document.getElementById("beginnerResourcesPage").style.display = "none";
+  document.getElementById("shopSetupPage").style.display = "none";
+  document.getElementById("complaintPage").style.display = "none";
+}
+
+function showBeginnerResources() {
+  document.getElementById("dashboardPage").style.display = "none";
+  document.getElementById("beginnerPage").style.display = "none";
+  document.getElementById("beginnerResourcesPage").style.display = "block";
+  document.getElementById("shopSetupPage").style.display = "none";
+  document.getElementById("complaintPage").style.display = "none";
+}
+
+function showShopSetup() {
+  document.getElementById("dashboardPage").style.display = "none";
+  document.getElementById("beginnerPage").style.display = "none";
+  document.getElementById("beginnerResourcesPage").style.display = "none";
+  document.getElementById("shopSetupPage").style.display = "block";
+  document.getElementById("complaintPage").style.display = "none";
+}
+
+function showComplaints() {
+  document.getElementById("dashboardPage").style.display = "none";
+  document.getElementById("beginnerPage").style.display = "none";
+  document.getElementById("beginnerResourcesPage").style.display = "none";
+  document.getElementById("shopSetupPage").style.display = "none";
+  document.getElementById("complaintPage").style.display = "block";
+  loadComplaints();
+}
+
+function getComplaints() {
+  return JSON.parse(localStorage.getItem("studentComplaints")) || [];
+}
+
+function saveComplaints(complaints) {
+  localStorage.setItem("studentComplaints", JSON.stringify(complaints));
+}
+
+function loadComplaints() {
+  const history = document.getElementById("complaintHistory");
+  const complaints = getComplaints();
+
+  if (!complaints.length) {
+    history.innerHTML = '<div class="complaint-card">No complaints submitted yet.</div>';
+    return;
+  }
+
+  history.innerHTML = complaints.map(item => `
+    <div class="complaint-card">
+      <b>${escapeHtml(item.topic)}</b>
+      <small>${escapeHtml(item.name)} · ${escapeHtml(item.telegram || "No Telegram username")} · ${escapeHtml(item.date)}</small>
+      <p style="color:#555;line-height:1.6;margin-top:8px">${escapeHtml(item.text)}</p>
+      <span class="status-pill">${escapeHtml(item.status)}</span>
+    </div>
+  `).join("");
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  }[char]));
+}
+
+function buildComplaintMessage(complaint) {
+  const supportLine = TELEGRAM_USERNAME === "YOUR_TELEGRAM_USERNAME" ? "" : `Send to support: @${TELEGRAM_USERNAME}\n\n`;
+  return `${supportLine}New student complaint\n\nName: ${complaint.name}\nTelegram: ${complaint.telegram}\nTopic: ${complaint.topic}\nDate: ${complaint.date}\n\nComplaint:\n${complaint.text}`;
+}
+
+function getTelegramShareUrl(message) {
+  return TELEGRAM_USERNAME === "YOUR_TELEGRAM_USERNAME" ? "https://t.me" : `https://t.me/${TELEGRAM_USERNAME}`;
+}
+
+function openTelegramComplaint(message) {
+  const telegramUrl = getTelegramShareUrl(message);
+  const fallback = document.getElementById("telegramFallback");
+  fallback.style.display = "block";
+  fallback.innerHTML = `Telegram should open the admin chat now. If it does not, <a href="${telegramUrl}" target="_blank" rel="noopener">click here to open @${TELEGRAM_USERNAME}</a>. The complaint text has been copied, so paste it into the admin chat.`;
+
+  const openedWindow = window.open(telegramUrl, "_blank", "noopener");
+  if (!openedWindow) {
+    window.location.href = telegramUrl;
+  }
+}
+
+function openImageViewer(card) {
+  const image = card.querySelector("img");
+  const title = card.querySelector("h4");
+  const caption = card.querySelector("p");
+  const viewer = document.getElementById("imageViewer");
+  const viewerImage = document.getElementById("viewerImage");
+
+  viewerImage.src = image.src;
+  viewerImage.alt = image.alt || title.textContent;
+  document.getElementById("viewerTitle").textContent = title.textContent;
+  document.getElementById("viewerCaption").textContent = caption.textContent;
+  viewer.classList.add("active");
+  viewer.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeImageViewer(event) {
+  if (event && event.target !== document.getElementById("imageViewer")) {
+    return;
+  }
+
+  const viewer = document.getElementById("imageViewer");
+  viewer.classList.remove("active");
+  viewer.setAttribute("aria-hidden", "true");
+  document.getElementById("viewerImage").src = "";
+  document.body.style.overflow = "";
+}
+
+function copyLatestComplaint() {
+  const complaints = getComplaints();
+  if (!complaints.length) {
+    alert("No complaint has been submitted yet.");
+    return;
+  }
+
+  const latest = complaints[0];
+  const text = buildComplaintMessage(latest);
+  navigator.clipboard.writeText(text);
+  alert("Latest complaint copied.");
+}
+
+document.getElementById("codeForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const code = document.getElementById("paidCode").value.trim().toUpperCase();
+  const message = document.getElementById("codeMessage");
+
+  if (code === PAID_CODE) {
+    localStorage.setItem("paidAccess", "true");
+    message.style.color = "green";
+    message.textContent = "Access granted. Opening paid training...";
+    setTimeout(openPaidPage, 500);
+  } else {
+    message.style.color = "red";
+    message.textContent = "Invalid paid access code.";
+  }
+});
+
+document.getElementById("complaintForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const complaint = {
+    name: document.getElementById("complaintName").value.trim() || (currentUser && currentUser.name) || "Student",
+    telegram: document.getElementById("complaintTelegram").value.trim(),
+    topic: document.getElementById("complaintTopic").value,
+    text: document.getElementById("complaintText").value.trim(),
+    date: new Date().toLocaleString(),
+    status: "Sent to Telegram - awaiting response"
+  };
+
+  const complaints = getComplaints();
+  complaints.unshift(complaint);
+  saveComplaints(complaints);
+  loadComplaints();
+
+  document.getElementById("complaintForm").reset();
+
+  const telegramMessage = buildComplaintMessage(complaint);
+  navigator.clipboard.writeText(telegramMessage);
+  openTelegramComplaint(telegramMessage);
+});
+
+document.querySelectorAll(".image-card").forEach(card => {
+  card.setAttribute("role", "button");
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("aria-label", "Open " + card.querySelector("h4").textContent);
+  card.addEventListener("click", () => openImageViewer(card));
+  card.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openImageViewer(card);
+    }
+  });
+});
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    closeImageViewer();
+  }
+});
+
+window.addEventListener("load", function() {
+  if (localStorage.getItem("paidAccess") === "true") {
+    openPaidPage();
+  }
+});
+</script>
+</body>
+</html>
