@@ -53,8 +53,8 @@ nav i,.card i,.lesson-card i,.topbar i{margin-right:8px}
 .resource-panel{background:white;border-radius:10px;padding:22px;box-shadow:0 4px 15px rgba(0,0,0,.05)}
 .resource-panel h3{margin-bottom:10px}.resource-panel p{color:#555;line-height:1.7;margin-bottom:16px}
 .resource-list{display:grid;gap:12px;margin-top:18px}.resource-item{border:1px solid #eee;border-radius:8px;padding:16px;color:#666;background:#fafafa}
-.video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0}.image-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin:20px 0}
-.video-card{background:#111;border-radius:8px;overflow:hidden;color:white}.video-frame{aspect-ratio:16/9;background:linear-gradient(135deg,#171725,#ec2f7a);display:grid;place-items:center;font-size:42px}.video-card div:last-child{padding:14px}.video-card h4{font-size:15px;margin-bottom:6px}.video-card a{color:#ffd7e6;font-weight:700;text-decoration:none;font-size:13px}
+.video-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin:18px 0}.image-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin:20px 0}
+.video-card{background:#111;border-radius:8px;overflow:hidden;color:white;box-shadow:0 14px 32px rgba(24,24,38,.14)}.video-frame{aspect-ratio:16/9;background:#171725}.video-frame iframe,.video-frame video{width:100%;height:100%;border:0;display:block;object-fit:cover}.video-card div:last-child{padding:16px}.video-card h4{font-size:16px;margin-bottom:6px}.video-card p{color:#d9d9e3;font-size:13px;line-height:1.6;margin-bottom:10px}.video-card a{color:#ffd7e6;font-weight:700;text-decoration:none;font-size:13px}
 .image-card{background:#fff;border:1px solid #eee;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;min-height:100%;box-shadow:0 4px 14px rgba(0,0,0,.04);transition:transform .2s ease,box-shadow .2s ease;cursor:pointer}.image-card:hover,.image-card:focus{transform:translateY(-3px);box-shadow:0 12px 24px rgba(24,24,38,.09);outline:none}.image-card:focus{border-color:#ec2f7a}.image-card img{width:100%;aspect-ratio:5/7;height:auto;object-fit:cover;display:block;background:#f4f4f6}.image-card div{padding:14px}.image-card h4{font-size:15px;margin-bottom:6px}.image-card p{font-size:13px;margin:0;color:#666;line-height:1.5}
 .image-viewer{position:fixed;inset:0;background:rgba(10,10,18,.76);display:none;align-items:center;justify-content:center;padding:22px;z-index:200}.image-viewer.active{display:flex}.image-viewer-card{width:min(980px,100%);max-height:92vh;background:white;border-radius:10px;overflow:hidden;display:grid;grid-template-columns:minmax(280px,.72fr) minmax(240px,.28fr);box-shadow:0 24px 70px rgba(0,0,0,.35)}.image-viewer-media{background:#111;display:grid;place-items:center;min-height:0}.image-viewer-media img{width:100%;height:100%;max-height:92vh;object-fit:contain;display:block}.image-viewer-copy{padding:22px;display:flex;flex-direction:column;gap:12px}.image-viewer-copy h3{font-size:22px}.image-viewer-copy p{color:#555;line-height:1.7}.viewer-close{align-self:flex-end;width:42px;height:42px;padding:0;border-radius:50%;display:grid;place-items:center;font-size:20px;background:#171725}.viewer-close:hover{background:#333344}.viewer-hint{font-size:12px;color:#888;margin-top:auto}
 .checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}.check-item{display:flex;gap:10px;align-items:flex-start;background:#fff7fb;border:1px solid #ffd7e6;border-radius:8px;padding:14px;color:#444}.check-item i{color:#ec2f7a;margin-top:2px}
@@ -236,17 +236,13 @@ nav i,.card i,.lesson-card i,.topbar i{margin-right:8px}
 
         <div class="video-grid">
           <div class="video-card">
-            <div class="video-frame"><i class="bi bi-play-circle"></i></div>
+            <div class="video-frame">
+              <video src="IMG_2482.MP4" controls preload="metadata" playsinline></video>
+            </div>
             <div>
               <h4>Video 1: TikTok Shop Beginner Introduction</h4>
-              <a href="https://www.youtube.com/results?search_query=tiktok+shop+beginner+tutorial" target="_blank">Open video link</a>
-            </div>
-          </div>
-          <div class="video-card">
-            <div class="video-frame"><i class="bi bi-play-circle"></i></div>
-            <div>
-              <h4>Video 2: Setting Up Your Seller Profile</h4>
-              <a href="https://www.youtube.com/results?search_query=tiktok+shop+seller+profile+setup" target="_blank">Open video link</a>
+              <p>Watch this beginner class video first, then use the YouTube link for the connected lesson material.</p>
+              <a href="https://youtu.be/_tddhX73wWQ?si=Y7M67HzJmZg485zb" target="_blank" rel="noopener">Open on YouTube</a>
             </div>
           </div>
         </div>
